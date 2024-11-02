@@ -9,25 +9,27 @@
 #endif
 
 #include <godot_cpp/classes/ref.hpp>
+#include <godot_cpp/classes/bit_map.hpp>
 
 using namespace godot;
 
-class Summator : public RefCounted
+class FloodFill : public RefCounted
 {
-    GDCLASS(Summator, RefCounted);
+    GDCLASS(FloodFill, RefCounted);
 
-    int count;
+    BitMap *grid;
 
 protected:
+    Vector2i grid_size;
+    TypedArray<Vector2i> points;
     static void _bind_methods();
 
 public:
-    Summator();
-    ~Summator();
+    FloodFill();
+    ~FloodFill();
 
-    void add(int p_value);
-    void reset();
-    int get_total() const;
+    void set_grid(BitMap *p_grid);
+    TypedArray<Vector2i> fill(int x, int y) const;
 };
 
 #endif // SUMMATOR_CLASS_H

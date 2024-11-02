@@ -26,14 +26,14 @@ if env["target"] in ["editor", "template_debug"]:
 
 if env["platform"] == "macos":
     library = env.SharedLibrary(
-        "game/bin/libgdsummator.{}.{}.framework/libgdsummator.{}.{}".format(
+        "game/bin/libgdfloodfill.{}.{}.framework/libgdfloodfill.{}.{}".format(
             env["platform"], env["target"], env["platform"], env["target"]
         ),
         source=sources,
     )
 else:
     library = env.SharedLibrary(
-        "game/bin/libgdsummator{}{}".format(env["suffix"], env["SHLIBSUFFIX"]),
+        "game/bin/libgdfloodfill{}{}".format(env["suffix"], env["SHLIBSUFFIX"]),
         source=sources,
     )
 
