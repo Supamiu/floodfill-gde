@@ -2,15 +2,17 @@ extends Node
 
 func _ready() -> void:
 	var bitmap: BitMap = BitMap.new()
-	bitmap.create(Vector2i(1024,1024))
-	var bitmap_copy: BitMap = bitmap.duplicate()
+	bitmap.create(Vector2i(8,8))
 	var fill = FloodFill.new()
 	var start = Time.get_ticks_msec()
-	fill.set_grid(bitmap)
+	var clone = bitmap.duplicate()
+	fill.set_grid(clone)
+	var areas = fill.get_areas()
 	var res = fill.fill(0,0)
+	print(areas.size())
 	print("C++: %fms, (%dx%d)"%[(Time.get_ticks_msec() - start), sqrt(res.size()), sqrt(res.size())])
 	var start_gd = Time.get_ticks_msec()
-	var res_gd = gds_flood_fill(bitmap_copy, 0, 0)
+	var res_gd = gds_flood_fill(bitmap, 0, 0)
 	print("GDScript: %fms, (%dx%d)"%[(Time.get_ticks_msec() - start_gd), sqrt(res_gd.size()), sqrt(res_gd.size())])
 
 func gds_flood_fill(grid: BitMap, tilex: int, tiley: int):

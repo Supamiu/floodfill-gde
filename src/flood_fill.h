@@ -29,6 +29,7 @@ public:
     ~FloodFill();
 
     void set_grid(BitMap *p_grid);
+    Array get_areas() const;
     TypedArray<Vector2i> fill(int x, int y) const;
 };
 
